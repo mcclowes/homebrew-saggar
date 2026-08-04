@@ -1,6 +1,6 @@
 cask "saggar" do
-  version "0.9.1"
-  sha256 "b5a7d4c91501744c0044774de8ebd945aadd840efe92350910beff4ed1e7c033"
+  version "0.9.2"
+  sha256 "2b5808ef1526d33d512cb991b809be214cc3711daf2b42f6768a5f6756875134"
 
   url "https://github.com/mcclowes/homebrew-saggar/releases/download/v#{version}/Saggar-#{version}.zip"
   name "Saggar"
