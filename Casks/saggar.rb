@@ -8,7 +8,7 @@ cask "saggar" do
   homepage "https://github.com/mcclowes/saggar"
 
   depends_on macos: :tahoe
-  depend_on arch: :arm64
+  depends_on arch: :arm64
 
   app "Saggar.app"
 
