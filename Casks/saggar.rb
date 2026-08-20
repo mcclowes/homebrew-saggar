@@ -1,11 +1,11 @@
 cask "saggar" do
-  version "0.25.1"
-  sha256 "1363e61f1236e870a257b211ff1bd6a84d9ce80f144c6d925d137c3ed594562e"
+  version "0.26.0"
+  sha256 "becd42bc1dab2ac12ce6d22104c788daa1a06cc937fd8e68a76eb3c7b1b1a4ff"
 
   url "https://github.com/mcclowes/homebrew-saggar/releases/download/v#{version}/Saggar-#{version}.zip"
   name "Saggar"
   desc "Kiln's companion terminal manager"
-  homepage "https://github.com/mcclowes/saggar"
+  homepage "https://saggar.marginalutility.dev"
 
   depends_on macos: :tahoe
   depends_on arch: :arm64
