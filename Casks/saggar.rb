@@ -7,8 +7,8 @@ cask "saggar" do
   desc "Kiln's companion terminal manager"
   homepage "https://saggar.marginalutility.dev/"
 
-  depends_on macos: :tahoe
   depends_on arch: :arm64
+  depends_on macos: :tahoe
 
   app "Saggar.app"
 

@@ -1,0 +1,38 @@
+name: Check Saggar cask
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: saggar-tap-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  cask:
+    name: Cask and release checks
+    runs-on: macos-26
+    timeout-minutes: 15
+    steps:
+      - name: Set up stable Homebrew and the current tap checkout
+        uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
+        with:
+          stable: true
+      - name: Check cask style
+        run: brew style Casks/saggar.rb
+      - name: Audit the cask
+        run: brew audit --cask --strict mcclowes/saggar/saggar
+      - name: Fetch and verify the archive checksum
+        run: brew fetch --cask mcclowes/saggar/saggar
+      - name: Verify the signed and notarized app
+        run: |
+          archive="$(brew --cache --cask mcclowes/saggar/saggar)"
+          bundle_dir="$(mktemp -d)"
+          trap 'rm -rf "$bundle_dir"' EXIT
+          ditto -x -k "$archive" "$bundle_dir"
+          codesign --verify --deep --strict --verbose=2 "$bundle_dir/Saggar.app"
+          spctl --assess --type execute --verbose=2 "$bundle_dir/Saggar.app"
+          xcrun stapler validate "$bundle_dir/Saggar.app"
